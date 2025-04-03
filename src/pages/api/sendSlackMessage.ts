@@ -9,7 +9,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             return res.status(400).json({ error: 'Missing message or webhookUrl' });
         }
 
-        const formattedMessage = `From Your Name's Slack Bot: ${message}`;
+        const formattedMessage = `From Alvin Pablico Consular Slack Bot: ${message}`;
 
         try {
             await axios.post(webhookUrl, {
