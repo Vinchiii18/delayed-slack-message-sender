@@ -9,7 +9,7 @@ const DelayInput: React.FC<DelayInputProps> = ({ onDelayChange }) => {
   const [unit, setUnit] = useState<string>('seconds');
 
   const handleDelayChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value === '' ? '' : parseInt(e.target.value, 10);
+    const value = e.target.value === '' ? '' : Math.max(0, parseInt(e.target.value, 10)); // Prevent negative values
     setDelay(value);
     onDelayChange(value, unit);
   };
@@ -33,9 +33,10 @@ const DelayInput: React.FC<DelayInputProps> = ({ onDelayChange }) => {
           value={delay}
           onChange={handleDelayChange}
           placeholder="Enter delay"
+          min="0" // Prevent negative values
         />
         <select
-          className="form-select ms-2" // Added Bootstrap margin-start class
+          className="form-select ms-2"
           value={unit}
           onChange={handleUnitChange}
         >

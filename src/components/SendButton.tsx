@@ -18,9 +18,14 @@ const SendButton: React.FC<SendButtonProps> = ({ delay, delayUnit, message, webh
 
     const isDisabled = !delay || !message || !webhookUrl;
 
-    const handleClick = () => {
+    const handleClick = async () => {
         if (!isDisabled) {
-            onSend();
+            try {
+                await onSend(); // Wait for the `onSend` function to complete
+                alert('Message has been sent successfully!'); // Show success alert
+            } catch (error) {
+                alert('Failed to send the message. Please try again.'); // Show error alert
+            }
         }
     };
 
