@@ -1,9 +1,9 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { useState } from 'react';
 import DelayInput from '../components/DelayInput';
 import MessageInput from '../components/MessageInput';
 import WebhookInput from '../components/WebhookInput';
 import SendButton from '../components/SendButton';
-import sendSlackMessage from '../utils/slackApi';
 
 const IndexPage = () => {
   const [delay, setDelay] = useState<number | ''>('');
@@ -13,28 +13,28 @@ const IndexPage = () => {
 
   const handleSendMessage = async () => {
     if (delay && message && webhookUrl) {
-        const delayInMilliseconds = convertDelayToMilliseconds(delay, unit);
-        await new Promise(resolve => setTimeout(resolve, delayInMilliseconds));
+      const delayInMilliseconds = convertDelayToMilliseconds(delay, unit);
+      await new Promise((resolve) => setTimeout(resolve, delayInMilliseconds));
 
-        try {
-            const response = await fetch('/api/sendSlackMessage', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ message, webhookUrl }),
-            });
+      try {
+        const response = await fetch('/api/sendSlackMessage', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ message, webhookUrl }),
+        });
 
-            if (!response.ok) {
-                throw new Error('Failed to send message to Slack');
-            }
-
-            console.log('Message sent successfully!');
-        } catch (error) {
-            console.error('Error sending message:', error);
+        if (!response.ok) {
+          throw new Error('Failed to send message to Slack');
         }
+
+        console.log('Message sent successfully!');
+      } catch (error) {
+        console.error('Error sending message:', error);
+      }
     }
-};
+  };
 
   const convertDelayToMilliseconds = (delay: number | '', unit: string) => {
     if (typeof delay === 'number') {
@@ -53,23 +53,29 @@ const IndexPage = () => {
   };
 
   return (
-    <div>
-      <h1>Delayed Slack Message Sender</h1>
-      <DelayInput
-        onDelayChange={(value, unit) => {
-          setDelay(value);
-          setUnit(unit);
-        }}
-      />
-      <MessageInput message={message} setMessage={setMessage} />
-      <WebhookInput webhookUrl={webhookUrl} setWebhookUrl={setWebhookUrl} />
-      <SendButton
-        delay={typeof delay === 'number' ? delay : 0}
-        delayUnit={unit} // Pass the unit (e.g., seconds, minutes, hours)
-        message={message}
-        webhookUrl={webhookUrl}
-        onSend={handleSendMessage} // Use onSend instead of onClick
-      />
+    <div className="container mt-5">
+      <div className="card shadow">
+        <div className="card-body">
+          <h1 className="card-title text-center mb-4">Delayed Slack Message Sender</h1>
+          <DelayInput
+            onDelayChange={(value, unit) => {
+              setDelay(value);
+              setUnit(unit);
+            }}
+          />
+          <MessageInput message={message} setMessage={setMessage} />
+          <WebhookInput webhookUrl={webhookUrl} setWebhookUrl={setWebhookUrl} />
+          <div className="text-center mt-4">
+            <SendButton
+              delay={typeof delay === 'number' ? delay : 0}
+              delayUnit={unit}
+              message={message}
+              webhookUrl={webhookUrl}
+              onSend={handleSendMessage}
+            />
+          </div>
+        </div>
+      </div>
     </div>
   );
 };

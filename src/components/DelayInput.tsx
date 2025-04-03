@@ -21,18 +21,29 @@ const DelayInput: React.FC<DelayInputProps> = ({ onDelayChange }) => {
   };
 
   return (
-    <div>
-      <input
-        type="number"
-        value={delay}
-        onChange={handleDelayChange}
-        placeholder="Delay amount"
-      />
-      <select value={unit} onChange={handleUnitChange}>
-        <option value="seconds">Seconds</option>
-        <option value="minutes">Minutes</option>
-        <option value="hours">Hours</option>
-      </select>
+    <div className="mb-3">
+      <label htmlFor="delayInput" className="form-label">
+        Delay Amount
+      </label>
+      <div className="input-group">
+        <input
+          id="delayInput"
+          type="number"
+          className="form-control"
+          value={delay}
+          onChange={handleDelayChange}
+          placeholder="Enter delay"
+        />
+        <select
+          className="form-select ms-2" // Added Bootstrap margin-start class
+          value={unit}
+          onChange={handleUnitChange}
+        >
+          <option value="seconds">Seconds</option>
+          <option value="minutes">Minutes</option>
+          <option value="hours">Hours</option>
+        </select>
+      </div>
     </div>
   );
 };

@@ -1,27 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
-interface MessageInputProps {
-    message: string;
-    setMessage: (message: string) => void;
-}
+type MessageInputProps = {
+  message: string;
+  setMessage: (message: string) => void;
+};
 
 const MessageInput: React.FC<MessageInputProps> = ({ message, setMessage }) => {
-    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setMessage(event.target.value);
-    };
-
-    return (
-        <div>
-            <label htmlFor="message">Slack Message:</label>
-            <input
-                type="text"
-                id="message"
-                value={message}
-                onChange={handleChange}
-                placeholder="Enter your message"
-            />
-        </div>
-    );
+  return (
+    <div className="mb-3">
+      <label htmlFor="messageInput" className="form-label">
+        Slack Message
+      </label>
+      <textarea
+        id="messageInput"
+        className="form-control"
+        value={message}
+        onChange={(e) => setMessage(e.target.value)}
+        placeholder="Enter your Slack message"
+        rows={3} // Dynamic height
+      ></textarea>
+    </div>
+  );
 };
 
 export default MessageInput;

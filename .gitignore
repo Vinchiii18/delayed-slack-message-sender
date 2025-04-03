@@ -1,1 +1,31 @@
-node_modules
+# Ignore Node.js dependencies
+node_modules/
+
+# Ignore build output
+.next/
+out/
+dist/
+
+# Ignore temporary files
+*.log
+*.gz
+*.tmp
+
+# Ignore compiled files
+*.js
+*.jsx
+*.ts
+*.tsx
+*.map
+
+# Ignore environment files
+.env
+.env.local
+.env.*.local
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore Vercel deployment files
+.vercel/

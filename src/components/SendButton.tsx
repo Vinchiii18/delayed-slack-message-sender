@@ -25,7 +25,11 @@ const SendButton: React.FC<SendButtonProps> = ({ delay, delayUnit, message, webh
     };
 
     return (
-        <button onClick={handleClick} disabled={isDisabled}>
+        <button
+            onClick={handleClick}
+            disabled={isDisabled}
+            className="btn btn-primary"
+        >
             {getDelayText()}
         </button>
     );
