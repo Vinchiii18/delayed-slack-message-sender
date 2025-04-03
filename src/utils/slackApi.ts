@@ -53,7 +53,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             return res.status(200).json({ success: true });
         } catch (error) {
             // Log the error details
-            console.error('Error sending message:', error.response?.data || error.message);
+            // console.error('Error sending message:', error.response?.data || error.message);
             return res.status(500).json({ error: 'Failed to send message' });
         }
     } else {
