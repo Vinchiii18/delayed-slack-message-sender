@@ -1,0 +1,33 @@
+{
+  "name": "delayed-slack-message-sender",
+  "version": "1.0.0",
+  "description": "A web application to schedule Slack messages to be sent after a specified delay.",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint ."
+  },
+  "keywords": [
+    "slack",
+    "scheduler",
+    "webhook",
+    "nextjs"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.8.4",
+    "next": "latest",
+    "react": "latest",
+    "react-dom": "latest"
+  },
+  "devDependencies": {
+    "@types/node": "22.14.0",
+    "@types/react": "19.1.0",
+    "eslint": "latest",
+    "eslint-config-next": "latest",
+    "typescript": "latest"
+  }
+}
